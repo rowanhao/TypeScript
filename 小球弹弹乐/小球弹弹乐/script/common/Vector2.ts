@@ -56,6 +56,7 @@ class Vector2 {
         this.y *= scale;
         return this;
     }
+    //当前向量对dir向量的投影向量
     public face(dir: Vector2): Vector2 {
         var ndir = dir.clone();
         ndir.normalize();

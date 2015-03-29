@@ -4,29 +4,19 @@ class Circle extends CollisionShape {
     x: number;
     y: number;
     r: number;
-    big_x: number;
-    big_y: number;
     color: string;
-    constructor(xx: number, yy: number, rr: number, dir: Vector2, sp: number){
+
+    constructor(xx: number, yy: number, rr: number, dir: Vector2){
         this.x = xx;
         this.y = yy;
         this.r = rr;
-        this.big_x= xx * 100;
-        this.big_y = yy * 100;
-        this.color = "#" + Random.range(0, 255).toString(16) + Random.range(0, 255).toString(16)
-                         + Random.range(0, 255).toString(16);
-        super(dir,sp);
-    }
-
-    comp() {
-        this.x = this.big_x / 100;
-        this.y = this.big_y / 100;
+        this.color = Random.color();
+        super(dir);
     }
 
     move() {
-        this.big_x += this.speed * this.direction.x;
-        this.big_y += this.speed * this.direction.y;
-        this.comp();
+        this.x += this.direction.x;
+        this.y += this.direction.y;
     }
 
     draw(canvas: CanvasRenderingContext2D) {
