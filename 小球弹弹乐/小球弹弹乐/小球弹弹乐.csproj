@@ -18,12 +18,9 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app.css" />
+    <Content Include="index.css" />
     <Content Include="index.html" />
     <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
@@ -32,6 +29,14 @@
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="script\common\Circle.ts" />
+    <TypeScriptCompile Include="script\common\Collision.ts" />
+    <TypeScriptCompile Include="script\common\CollisionShape.ts" />
+    <TypeScriptCompile Include="script\common\Random.ts" />
+    <TypeScriptCompile Include="script\common\Vector2.ts" />
+    <TypeScriptCompile Include="script\main.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

@@ -1,21 +1,28 @@
 ﻿
 var heros: Circle[] = new Array();
 var ctx: CanvasRenderingContext2D;
+var canvas: HTMLCanvasElement;
 var handle = 0;
 var c_width;
 var c_height;
+
 window.onload = () => {
+
+    
+
     main();
     return;
 }
 
-
-window.onclick = function(e) {
-    createHero(e.clientX, e.clientY);
-}
+window.onclick = function (e) {
+        createHero(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    }
 
 function createHero(xx: number = -1, yy: number = -1) {
+    if (xx < -1 || xx > c_width) return;
+    if (yy < -1 || yy > c_height) return;
     var r = Random.range(10, 50);
+    //把方向向量扩大100倍
     var setX = Random.range(0, 100);
     var setY = Math.sqrt(10000 - setX * setX);
     if (Random.range(0, 1) == 0) setX = -setX;
@@ -28,7 +35,7 @@ function createHero(xx: number = -1, yy: number = -1) {
 }
 
 function collision() {
-    
+
     heros.forEach((hero, i, a) => {
         if (hero.x - hero.r <= 0 || hero.x + hero.r >= c_width) {
             hero.direction.x = -hero.direction.x;
@@ -39,7 +46,7 @@ function collision() {
         }
         heros.forEach((hero2, i, a) => {
             if (Cir2Cir(hero, hero2)) {
-               
+
             }
         })
     })
@@ -55,7 +62,7 @@ function loop() {
 function main() {
 
     var content = document.getElementById('content');
-    var canvas: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('gameCanvas');
+    canvas = <HTMLCanvasElement>document.getElementById('gameCanvas');
     c_height = canvas.height;
     c_width = canvas.width;
     ctx = canvas.getContext("2d");

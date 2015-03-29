@@ -1,9 +1,13 @@
 ﻿body {
-	margin: 0;
-	background:#000000;
+    font-family: 'Segoe UI', sans-serif;
+    margin-left: 0;
+    background: #000000;
 }
 
-canvas{
-	border :1px dotted red;
+canvas {
+    position: relative;
+    left: 500px;
+    top: 150px;
+    border :1px dotted red;
 	background:#ffffff;
 }
