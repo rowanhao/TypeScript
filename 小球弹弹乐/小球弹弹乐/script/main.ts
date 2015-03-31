@@ -18,13 +18,13 @@ window.onclick = function (e) {
 function createHero(xx: number = -1, yy: number = -1) {
     if (xx < -1 || xx > c_width) return;
     if (yy < -1 || yy > c_height) return;
-    var r = Random.range(10, 100);
+    var r = Random.range(10, 50);
 
     var setX = Math.random();
     var setY = Math.sqrt(1.0 - setX * setX);
     if (Random.range(0, 1) == 0) setX = -setX;
     if (Random.range(0, 1) == 0) setY = -setY;
-    var sp = Random.range(5, 5);
+    var sp = Random.range(10, 10);
     var x = xx < 0 ? Random.range(r, c_width - r) : xx;
     var y = yy < 0 ? Random.range(r, c_height - r) : yy;
     var hero = new Circle(x, y, r, new Vector2(setX * sp, setY * sp));
@@ -54,44 +54,10 @@ function collision() {
             if (cha >= 0) {
                 hero.move(-(cha * 0.5) / hero.direction.length);
                 hero2.move(-(cha * 0.5) / hero2.direction.length);
-                //if (coll[i][j] == true) continue;
-                var m1 = hero.r * hero.r * hero.r * 4 / 3;
-                var m2 = hero2.r * hero2.r * hero2.r * 4 / 3;
-
-                var energyBefor = hero.direction.length * m1 + hero2.direction.length * m2;
-
-                //相撞之后的处理规则：
-                //两个圆球相撞后，会根据两个圆球的质量，即r*r*r的大小来分配力量
-                var fa: Vector2 = hero.direction;
-                var fb: Vector2 = hero2.direction;
-                var ab: Vector2 = new Vector2(hero2.x - hero.x, hero2.y - hero.y);
-                var ba: Vector2 = new Vector2(hero.x - hero2.x, hero.y - hero2.y);
-                //fa对ab向量的投影
-                var aleft: Vector2 = fa.clone().face(ab);
-                var bleft: Vector2 = fb.clone().face(ba);
-                //fa对ab法向量的投影
-                var alast: Vector2 = fa.clone().minus(aleft);
-                var blast: Vector2 = fb.clone().minus(bleft);
-
-                var v1 = fa.length;
-                var v2 = fb.length;
-
-                var vv1 = ((m1 - m2) * v1 + 2 * m2 * v2) / (m1 + m2);
-                var vv2 = ((m2 - m1) * v2 + 2 * m1 * v1) / (m1 + m2);
-
-                var aa = ba.clone().normalize().scale(vv1).add(alast);
-                var bb = ab.clone().normalize().scale(vv2).add(blast);
-
-                var energyAfter = m1 * aa.length + m2 * bb.length;
-
-                aa.scale(energyBefor / energyAfter);
-                bb.scale(energyBefor / energyAfter);
-
-                hero.direction = aa;
-                hero2.direction = bb;
-            //    coll[i][j] = true;
-            //} else {
-            //    coll[i][j] = false;
+                var aCollision = new Cir2(hero, hero2);
+                aCollision.collision();
+                hero = aCollision.a;
+                hero2 = aCollision.b;
             }
         }
     }
