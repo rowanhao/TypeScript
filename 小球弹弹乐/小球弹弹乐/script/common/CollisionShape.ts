@@ -6,5 +6,5 @@ class CollisionShape {
        this.direction = dir;
    }
    draw(canvas: CanvasRenderingContext2D) { }
-   move() { }
+   move(step:number = 1) { }
 }

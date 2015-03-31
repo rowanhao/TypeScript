@@ -14,9 +14,9 @@ class Circle extends CollisionShape {
         super(dir);
     }
 
-    move() {
-        this.x += this.direction.x;
-        this.y += this.direction.y;
+    move(step:number = 1) {
+        this.x += this.direction.x * step;
+        this.y += this.direction.y * step;
     }
 
     draw(canvas: CanvasRenderingContext2D) {
@@ -26,5 +26,7 @@ class Circle extends CollisionShape {
         canvas.beginPath();
         canvas.arc(this.x, this.y, this.r, 0, Math.PI * 2, true);
         canvas.stroke();
+        //canvas.closePath();
+        //canvas.fill();
     }
 }

@@ -50,7 +50,10 @@ function collision() {
         }
         for (var j = i + 1; j < heros.length; j++) {
             var hero2 = heros[j];
-            if (Cir2Cir(hero, hero2)) {
+            var cha = Cir2Cir(hero, hero2);
+            if (cha >= 0) {
+                hero.move(-(cha * 0.5) / hero.direction.length);
+                hero2.move(-(cha * 0.5) / hero2.direction.length);
                 //if (coll[i][j] == true) continue;
                 var m1 = hero.r * hero.r * hero.r * 4 / 3;
                 var m2 = hero2.r * hero2.r * hero2.r * 4 / 3;
@@ -95,9 +98,9 @@ function collision() {
 }
 
 function loop() {
+    collision();
     ctx.clearRect(0, 0, c_width, c_height);
     heros.forEach((v, i, a) => v.draw(ctx));
-    collision();
     heros.forEach((v, i, a) => v.move());
     handle = window.requestAnimationFrame(loop);
 }
