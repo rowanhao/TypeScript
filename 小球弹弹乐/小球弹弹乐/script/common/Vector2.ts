@@ -24,7 +24,9 @@ class Vector2 {
         return Math.sqrt(this.length2);
     }
     public clone(): Vector2 {
-        return new Vector2(this.x, this.y);
+        var a: Vector2;
+        a.set(this.x, this.y);
+        return a;
     }
     public ceil(): Vector2 {
         return new Vector2(Math.ceil(this.x), Math.ceil(this.y));

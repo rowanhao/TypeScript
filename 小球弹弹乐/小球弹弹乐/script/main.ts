@@ -33,15 +33,16 @@ function createHero(xx: number = -1, yy: number = -1) {
 
 function collision() {
 
-    heros.forEach((hero, i, a) => {
+    for (var i = 0; i < heros.length; i++) {
+        var hero = heros[i];
         if (hero.x - hero.r <= 0 || hero.x + hero.r >= c_width) {
             hero.direction.x = -hero.direction.x;
         }
-
         if (hero.y - hero.r <= 0 || hero.y + hero.r >= c_height) {
             hero.direction.y = -hero.direction.y;
         }
-        heros.forEach((hero2, i, a) => {
+        for (var j = i + 1; j < heros.length; j++) {
+            var hero2 = heros[j];
             if (Cir2Cir(hero, hero2)) {
                 //相撞之后的处理规则：
                 //两个圆球相撞后，会根据两个圆球的质量，即r*r的大小来分配力量
@@ -49,20 +50,22 @@ function collision() {
                 var fb: Vector2 = hero2.direction;
                 var ab: Vector2 = new Vector2(hero2.x - hero.x, hero2.y - hero.y);
                 var ba: Vector2 = new Vector2(hero.x - hero2.x, hero.y - hero2.y);
-                var aleft: Vector2 = fa;
-                var bleft: Vector2 = fb;
-                var alast: Vector2 = fa;
-                var blast: Vector2 = fb;
-                aleft.face(ab);
-                bleft.face(ba);
+                //fa对ab向量的投影
+                var aleft: Vector2 = fa.clone().face(ab);
+                var bleft: Vector2 = fb.clone().face(ba);
+                //fa对ab法向量的投影
+                var alast: Vector2 = fa.clone().minus(aleft);
+                var blast: Vector2 = fb.clone().minus(bleft);
 
-                alast.minus(aleft);
-                blast.minus(bleft);
-                
+
+
+
+
+
 
             }
-        })
-    })
+        }
+    }
 }
 
 function loop() {
