@@ -20,10 +20,11 @@ class Circle extends CollisionShape {
     }
 
     draw(canvas: CanvasRenderingContext2D) {
-        canvas.fillStyle = this.color;
+        //  canvas.fillStyle = this.color;
+        canvas.strokeStyle = this.color;
+        canvas.lineWidth = 5;
         canvas.beginPath();
         canvas.arc(this.x, this.y, this.r, 0, Math.PI * 2, true);
-        canvas.closePath();
-        canvas.fill();
+        canvas.stroke();
     }
 }

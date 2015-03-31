@@ -15,6 +15,10 @@ class Vector2 {
         return this;
     }
 
+    public toString(): String {
+        return "Vector2(" + this.x + " , " + this.y + ")\n";
+    }
+
     get length2(): number {
         if (this.x == 0 && this.y == 0)
             return 0;
@@ -24,9 +28,7 @@ class Vector2 {
         return Math.sqrt(this.length2);
     }
     public clone(): Vector2 {
-        var a: Vector2;
-        a.set(this.x, this.y);
-        return a;
+        return new Vector2(this.x,this.y);
     }
     public ceil(): Vector2 {
         return new Vector2(Math.ceil(this.x), Math.ceil(this.y));
@@ -39,6 +41,18 @@ class Vector2 {
     }
     public equal(rhs: Vector2): boolean {
         return (this.y == rhs.y && this.x == rhs.x);
+    }
+    //判断a，b两个数的符号是否相同
+    private abEqual(a: number, b: number): boolean {
+        if (a < 0 && b < 0) return true;
+        if (a > 0 && b > 0) return true;
+        if (Math.abs(a - b) < 0.00000001) return true;
+        return false;
+    }
+    //判断两个向量是否同向
+    public faceEqual(rhs: Vector2): boolean {
+        if (this.abEqual(rhs.x, this.x) && this.abEqual(rhs.y, this.y)) return true;
+        return false;
     }
     public less(rhs: Vector2): boolean {
         return (this.y < rhs.y || (this.y == rhs.y && this.x < rhs.x));
