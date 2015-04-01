@@ -5,6 +5,7 @@ var canvas: HTMLCanvasElement;
 var handle = 0;
 var c_width;
 var c_height;
+var fps;
 //var coll: boolean[][] = new Array();
 window.onload = () => {
     main();
@@ -18,13 +19,13 @@ window.onclick = function (e) {
 function createHero(xx: number = -1, yy: number = -1) {
     if (xx < -1 || xx > c_width) return;
     if (yy < -1 || yy > c_height) return;
-    var r = Random.range(10, 50);
+    var r = Random.range(10, 10);
 
     var setX = Math.random();
     var setY = Math.sqrt(1.0 - setX * setX);
     if (Random.range(0, 1) == 0) setX = -setX;
     if (Random.range(0, 1) == 0) setY = -setY;
-    var sp = Random.range(10, 10);
+    var sp = Random.range(5, 5);
     var x = xx < 0 ? Random.range(r, c_width - r) : xx;
     var y = yy < 0 ? Random.range(r, c_height - r) : yy;
     var hero = new Circle(x, y, r, new Vector2(setX * sp, setY * sp));
@@ -48,6 +49,8 @@ function collision() {
         if (hero.y - hero.r <= 0 || hero.y + hero.r >= c_height) {
             hero.direction.y = -hero.direction.y;
         }
+        hero.x = Math.max(Math.min(c_width - hero.r, hero.x), hero.r);
+        hero.y = Math.max(Math.min(c_height - hero.r, hero.y), hero.r);
         for (var j = i + 1; j < heros.length; j++) {
             var hero2 = heros[j];
             var cha = Cir2Cir(hero, hero2);
@@ -64,14 +67,21 @@ function collision() {
 }
 
 function loop() {
+    fps++;
     collision();
+    
     ctx.clearRect(0, 0, c_width, c_height);
     heros.forEach((v, i, a) => v.draw(ctx));
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "#ff0000";
+    ctx.font = "20px Arial lighter";;
+    ctx.strokeText("总帧数：" + fps, 0, 40);
+    ctx.strokeText("共有球体：" + heros.length, 0, 80);
     heros.forEach((v, i, a) => v.move());
     handle = window.requestAnimationFrame(loop);
 }
 function main() {
-
+    fps = 0;
     var content = document.getElementById('content');
     canvas = <HTMLCanvasElement>document.getElementById('gameCanvas');
     c_height = canvas.height;
