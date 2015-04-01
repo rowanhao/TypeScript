@@ -1,0 +1,9 @@
+﻿
+
+
+class GraphConstructor {
+
+    createPolygen() {
+
+    }
+}

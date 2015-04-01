@@ -34,6 +34,8 @@
     <TypeScriptCompile Include="script\common\Circle.ts" />
     <TypeScriptCompile Include="script\common\Collision.ts" />
     <TypeScriptCompile Include="script\common\CollisionShape.ts" />
+    <TypeScriptCompile Include="script\common\GraphConstructor.ts" />
+    <TypeScriptCompile Include="script\common\Polygon.ts" />
     <TypeScriptCompile Include="script\common\Random.ts" />
     <TypeScriptCompile Include="script\common\Vector2.ts" />
     <TypeScriptCompile Include="script\main.ts" />

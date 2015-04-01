@@ -5,9 +5,36 @@
 }
 
 canvas {
-    position: relative;
-    left: 500px;
+    position: absolute;
+    left: 200px;
     top: 150px;
     border :1px dotted red;
 	background:#ffffff;
 }
+
+#CircleAppend {
+	position: absolute;
+	left:1200px;
+	top: 150px;
+    width:400px;
+    height:300px;
+    background:#ffffff;
+    display:inline-block;
+    font-size:50px;
+    text-align:center;
+    line-height:300px;
+}
+
+#PolygonAppend {
+	position: absolute;
+	left:1200px;
+	top: 550px;
+    width:400px;
+    height:300px;
+    background:#ffffff;
+    display:inline-block;
+    font-size:50px;
+    text-align:center;
+    line-height:300px;
+}
+
