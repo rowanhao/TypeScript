@@ -11,14 +11,42 @@
     <script src="script/common/Circle.js"></script>
     <script src="script/common/Polygon.js"></script>
     <script src="script/common/Collision.js"></script>
+    <script src="script/common/GraphConstructor.js"></script>
     <script src="script/main.js"></script>
+    <script>
+        function textChange(id, num) {
+            var content = document.getElementById(id);
+            var now = Number(content.value)
+            if (num == -2) {
+                now = Random.range(1, 20);
+                content.value = now + "";
+            }
+            else {
+                now += num;
+                if (now < 0) now = 0;
+                if (now > 20) now = 20;
+                content.value = now + "";
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="content">
         <canvas id="gameCanvas" width="800" height="600" />
     </div>
     <div id="CircleAppend">
-        这是个圆形添加器
+        这是个圆形编辑器<br />
+        数量：
+        <button id="CirclenumberSub" onclick="textChange('Circlenumber', -1)">-</button>
+        <input type="text" id="Circlenumber" value="0" size="10" />
+        <button id="CirclenumberAdd" onclick="textChange('Circlenumber', 1)">+</button><br />
+        速度：
+        <button id="CirclespeedSub" onclick="textChange('Circlespeed', -1)">-</button>
+        <input type="text" id="Circlespeed" value="0" size="10" />
+        <button id="CirclespeedAdd" onclick="textChange('Circlespeed', 1)">+</button>
+        <button id="CirclespeedRand" onclick="textChange('Circlespeed', -2)">随机</button><br />
+        <button id="Circlecreat" onclick="createCircle()">开始添加</button>
+        <button id="Circlecreat" onclick="cancelCircle()">清空圆球</button>
     </div>
     <div id="PolygonAppend">
         这是个多边形添加器

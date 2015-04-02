@@ -28,7 +28,7 @@ class Vector2 {
         return Math.sqrt(this.length2);
     }
     public clone(): Vector2 {
-        return new Vector2(this.x,this.y);
+        return new Vector2(this.x, this.y);
     }
     public ceil(): Vector2 {
         return new Vector2(Math.ceil(this.x), Math.ceil(this.y));
@@ -98,6 +98,17 @@ class Vector2 {
             this.y = y * cos - x * sin;
         }
         return this;
+    }
+    public rotate2(x: number, y: number, sin: number, cos: number, reverse: boolean): Vector2 {
+        var result: Vector2 = new Vector2(0, 0);
+        if (reverse) {
+            result.x = x * cos + y * sin;
+            result.y = y * cos - x * sin;
+        } else {
+            result.x = x * cos - y * sin;
+            result.y = y * cos + x * sin;
+        }
+        return result;
     }
     public dot(rhs: Vector2): number {
         return this.x * rhs.x + this.y * rhs.y;

@@ -16,7 +16,7 @@ window.onclick = function (e) {
     createHero(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
 }
 
-function createHero(xx: number = -1, yy: number = -1) {
+function createHero(xx: number = -1, yy: number = -1, sp: number = -1) {
     if (xx < -1 || xx > c_width) return;
     if (yy < -1 || yy > c_height) return;
     var r = Random.range(10, 10);
@@ -25,19 +25,32 @@ function createHero(xx: number = -1, yy: number = -1) {
     var setY = Math.sqrt(1.0 - setX * setX);
     if (Random.range(0, 1) == 0) setX = -setX;
     if (Random.range(0, 1) == 0) setY = -setY;
-    var sp = Random.range(5, 5);
+    if(sp==-1) sp = Random.range(5, 5); 
     var x = xx < 0 ? Random.range(r, c_width - r) : xx;
     var y = yy < 0 ? Random.range(r, c_height - r) : yy;
     var hero = new Circle(x, y, r, new Vector2(setX * sp, setY * sp));
-    //coll.push([]);
     heros.push(hero);
-    //for (var i = 0; i < heros.length - 1; i++) {
-    //    coll[i].push(false);
-    //}
-    //for (var i = 0; i < heros.length; i++) {
-    //    coll[heros.length - 1].push(false);
-    //}
 }
+
+function createCircle() {
+    var num:number;
+    var sp;
+    num = Number(document.getElementById("Circlenumber").value);
+    sp = Number(document.getElementById("Circlespeed").value);
+   // console.log(num, sp);
+    for (var i = 0; i < num; i++)createHero(-1, -1, sp);
+}
+
+function cancelCircle() {
+    var num: number;
+    num = Number(document.getElementById("Circlenumber").value);
+    for (var i = 0; i < num; i++) {
+        if (heros.length == 0) break;
+        heros.pop();
+    }
+}
+
+
 
 function collision() {
 
@@ -57,6 +70,7 @@ function collision() {
             if (cha >= 0) {
                 hero.move(-(cha * 0.5) / hero.direction.length);
                 hero2.move(-(cha * 0.5) / hero2.direction.length);
+               
                 var aCollision = new Cir2(hero, hero2);
                 aCollision.collision();
                 hero = aCollision.a;
@@ -82,7 +96,6 @@ function loop() {
 }
 function main() {
     fps = 0;
-    var content = document.getElementById('content');
     canvas = <HTMLCanvasElement>document.getElementById('gameCanvas');
     c_height = canvas.height;
     c_width = canvas.width;

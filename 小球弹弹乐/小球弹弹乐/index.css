@@ -14,27 +14,22 @@ canvas {
 
 #CircleAppend {
 	position: absolute;
-	left:1200px;
+	left:1100px;
 	top: 150px;
     width:400px;
-    height:300px;
+    height:250px;
     background:#ffffff;
     display:inline-block;
-    font-size:50px;
-    text-align:center;
-    line-height:300px;
+    line-height:50px;
 }
 
 #PolygonAppend {
 	position: absolute;
-	left:1200px;
-	top: 550px;
+	left:1100px;
+	top: 500px;
     width:400px;
-    height:300px;
+    height:250px;
     background:#ffffff;
     display:inline-block;
-    font-size:50px;
-    text-align:center;
-    line-height:300px;
 }
 

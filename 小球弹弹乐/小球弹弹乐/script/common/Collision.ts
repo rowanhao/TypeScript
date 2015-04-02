@@ -12,51 +12,37 @@ class Cir2{
         var angle: number = Math.atan2(dy, dx);
         var cos: number = Math.cos(angle);
         var sin: number = Math.sin(angle);
- 
-        //以ballA中心为旋转中心反向旋转
-        var xA: number = 0;//ballA自身为旋转中心，所以自身旋转后的相对坐标都是0
-        var yA: number = 0;
-
-        var xB: number = dx * cos + dy * sin;
-        var yB: number = dy * cos - dx * sin;
-
-        var ballA = this.a.direction;
-        var ballB = this.b.direction;
-        //先(反向)旋转二球相对(ballA的)速度
-        var vxA = ballA.x * cos + ballA.y * sin;
-        var vyA = ballA.y * cos - ballA.x * sin;
-        var vxB = ballB.x * cos + ballB.y * sin;
-        var vyB = ballB.y * cos - ballB.x * sin;
- 
-        //旋转后的vx速度处理运量守恒
         var Amass = 3.0 / 4.0 * this.a.r * this.a.r * this.a.r;
         var Bmass = 3.0 / 4.0 * this.b.r * this.b.r * this.b.r;
-        var vdx = vxA - vxB;
-        var vxAFinal = ((Amass - Bmass) * vxA + 2 * Bmass * vxB) / (Amass + Bmass);
-        var vxBFinal = vxAFinal + vdx;
- 
-        //相对位置处理
-        xA += vxAFinal;
-        xB += vxBFinal;
- 
-        //处理完了,再旋转回去
-        //先处理坐标位置
-        var xAFinal: number = xA * cos - yA * sin;
-        var yAFinal: number = yA * cos + xA * sin;
-        var xBFinal: number = xB * cos - yB * sin;
-        var yBFinal: number = yB * cos + xB * sin;
- 
-        //处理最终的位置变化
-        this.b.x = this.a.x + xBFinal;
-        this.b.y = this.a.y + yBFinal;
-        this.a.x += xAFinal;
-        this.a.y += yAFinal;
- 
-        //再处理速度
-        this.a.direction.x = vxAFinal * cos - vyA * sin;
-        this.a.direction.y = vyA * cos + vxAFinal * sin;
-        this.b.direction.x = vxBFinal * cos - vyB * sin;
-        this.b.direction.y = vyB * cos + vxBFinal * sin;
+        var pos0: Vector2 = new Vector2(0, 0);
+        // 旋转 this.b 的速度 
+        var pos1: Vector2 = pos0.rotate2(dx, dy, sin, cos, true);
+        // 旋转 this.a 的速度 
+
+        var vel0: Vector2 = pos0.rotate2(this.a.direction.x, this.a.direction.y, sin, cos, true);
+        // 旋转 this.b 的速度 
+        var vel1: Vector2 = pos0.rotate2(this.b.direction.x, this.b.direction.y, sin, cos, true);
+        // 碰撞的作用力 
+        var vxTotal: number = vel0.x - vel1.x;
+        vel0.x = ((Amass - Bmass) * vel0.x + 2 * Bmass * vel1.x) / (Amass + Bmass);
+        vel1.x = vxTotal + vel0.x;
+        // 更新位置 
+        var absV: number = Math.abs(vel0.x) + Math.abs(vel1.x);
+        // 将位置旋转回来 
+        var pos0F: Vector2 = pos0.rotate2(pos0.x, pos0.y, sin, cos, false);
+        var pos1F: Vector2 = pos0.rotate2(pos1.x, pos1.y, sin, cos, false);
+        // 将位置调整为屏幕的实际位置 
+        this.b.x = this.a.x + pos1F.x;
+        this.b.y = this.a.y + pos1F.y;
+        this.a.x = this.a.x + pos0F.x;
+        this.a.y = this.a.y + pos0F.y;
+        // 将速度旋转回来 
+        var vel0F: Vector2 = pos0.rotate2(vel0.x, vel0.y, sin, cos, false);
+        var vel1F: Vector2 = pos0.rotate2(vel1.x, vel1.y, sin, cos, false);
+        this.a.direction.x = vel0F.x;
+        this.a.direction.y = vel0F.y;
+        this.b.direction.x = vel1F.x;
+        this.b.direction.y = vel1F.y;
     }
 }
 
