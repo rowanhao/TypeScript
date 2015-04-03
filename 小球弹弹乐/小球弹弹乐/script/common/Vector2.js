@@ -146,6 +146,10 @@
         }
         return this;
     };
+
+    Vector2.prototype.perp = function () {
+        return new Vector2(-this.x, this.y);
+    };
     Vector2.East = new Vector2(1, 0);
     Vector2.South = new Vector2(0, 1);
     Vector2.West = new Vector2(-1, 0);

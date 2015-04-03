@@ -23,6 +23,7 @@ var Polygon = (function (_super) {
     function Polygon(po, dir) {
         this.point = po;
         this.color = Random.color();
+        this.getAxes();
         _super.call(this, dir);
     }
     Polygon.prototype.move = function (step) {
@@ -45,6 +46,14 @@ var Polygon = (function (_super) {
         }
         canvas.closePath();
         canvas.fill();
+    };
+    Polygon.prototype.getAxes = function () {
+        for (var i = 0; i < this.point.length; i++) {
+            var a = this.point[i];
+            var b = this.point[(i + 1) % this.point.length];
+            var line = new Vector2(b.x - a.x, b.y - a.y);
+            this.axes.push(line.perp());
+        }
     };
     return Polygon;
 })(CollisionShape);

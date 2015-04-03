@@ -17,10 +17,12 @@ class Point {
 class Polygon extends CollisionShape {
     point: Point[];
     color: string;
+    axes: Vector2[];
 
     constructor(po: Point[], dir: Vector2) {
         this.point = po;
         this.color = Random.color();
+        this.getAxes();
         super(dir);
     }
     
@@ -44,4 +46,13 @@ class Polygon extends CollisionShape {
         canvas.closePath();
         canvas.fill();
     }
+    getAxes() {
+        for (var i = 0; i < this.point.length; i++) {
+            var a = this.point[i];
+            var b = this.point[(i + 1) % this.point.length];
+            var line = new Vector2(b.x - a.x, b.y - a.y);
+            this.axes.push(line.perp());
+        }
+    }
+    get
 }

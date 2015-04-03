@@ -55,4 +55,15 @@ function Cir2Cir(a, b) {
     var len = new Vector2(a.x - b.x, a.y - b.y);
     return (a.r + b.r) - len.length;
 }
+
+function Polygon2Polygon(a, b) {
+    var overlap = -1;
+    var smallest;
+
+    for (var i = 0; i < a.axes.length; i++) {
+        var axes = a.axes[i];
+    }
+
+    return true;
+}
 //# sourceMappingURL=Collision.js.map

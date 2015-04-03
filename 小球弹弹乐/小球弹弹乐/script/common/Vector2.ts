@@ -131,4 +131,8 @@ class Vector2 {
         }
         return this;
     }
+
+    public perp(): Vector2 {
+        return new Vector2(-this.x, this.y);
+    }
 }
