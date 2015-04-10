@@ -5,7 +5,7 @@
 class Polygon extends CollisionShape {
     point: Point[];
     color: string;
-    axes: Vector2[];//分离轴
+    axes: Line[];//分离轴
 
     constructor(po: Point[], dir: Vector2) {
         this.point = po;
@@ -36,8 +36,10 @@ class Polygon extends CollisionShape {
     }
 
     project(ax: Vector2): Segment {
-        var left, right;
-
+        var left, right, mid;
+        for (var i = 0; i < this.point.length; i++) {
+            mid = this.point[i];
+        }
         return new Segment(left, right);
     }
 

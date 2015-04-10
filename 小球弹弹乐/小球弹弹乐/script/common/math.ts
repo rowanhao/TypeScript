@@ -168,6 +168,11 @@ class Point {
         this.x += dir.x * step;
         this.y += dir.x * step;
     }
+
+    poject(ax: Vector2): number {
+
+        return 0;
+    }
 };
 //线段
 class Segment {
@@ -176,5 +181,16 @@ class Segment {
     constructor(ll: number, rr: number) {
         this.left = ll;
         this.right = rr;
+    }
+};
+//直线
+class Line {
+    a: number;
+    b: number;
+    c: number;
+    constructor(A: number, B: number, C: number) {
+        this.a = A;
+        this.b = B;
+        this.c = C;
     }
 };

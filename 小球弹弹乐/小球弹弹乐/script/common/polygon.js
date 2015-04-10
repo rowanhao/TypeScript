@@ -36,8 +36,10 @@ var Polygon = (function (_super) {
     };
 
     Polygon.prototype.project = function (ax) {
-        var left, right;
-
+        var left, right, mid;
+        for (var i = 0; i < this.point.length; i++) {
+            mid = this.point[i];
+        }
         return new Segment(left, right);
     };
 

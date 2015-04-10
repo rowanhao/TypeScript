@@ -195,6 +195,10 @@ var Point = (function () {
         this.x += dir.x * step;
         this.y += dir.x * step;
     };
+
+    Point.prototype.poject = function (ax) {
+        return 0;
+    };
     return Point;
 })();
 ;
@@ -206,6 +210,17 @@ var Segment = (function () {
         this.right = rr;
     }
     return Segment;
+})();
+;
+
+//直线
+var Line = (function () {
+    function Line(A, B, C) {
+        this.a = A;
+        this.b = B;
+        this.c = C;
+    }
+    return Line;
 })();
 ;
 //# sourceMappingURL=math.js.map
