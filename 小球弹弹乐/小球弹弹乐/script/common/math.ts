@@ -1,5 +1,5 @@
 ﻿
-
+//向量
 class Vector2 {
     public static East: Vector2 = new Vector2(1, 0);
     public static South: Vector2 = new Vector2(0, 1);
@@ -135,4 +135,46 @@ class Vector2 {
     public perp(): Vector2 {
         return new Vector2(-this.x, this.y);
     }
-}
+};
+//随机数
+class Random {
+    public static range(min: number, max: number = 0) {
+        if (min == max)
+            return min;
+        //swap
+        if (min > max) {
+            var tmp = max;
+            max = min;
+            min = tmp;
+        }
+        return min + Math.round(Math.random() * (max - min));
+    }
+
+    public static color() {
+        return "#" + Random.range(0, 255).toString(16) + Random.range(0, 255).toString(16)
+            + Random.range(0, 255).toString(16);
+    }
+};
+//点
+class Point {
+    x: number;
+    y: number;
+    constructor(xx: number, yy: number) {
+        this.x = xx;
+        this.y = yy;
+    }
+
+    move(dir: Vector2, step: number = 1) {
+        this.x += dir.x * step;
+        this.y += dir.x * step;
+    }
+};
+//线段
+class Segment {
+    left: number;
+    right: number;
+    constructor(ll: number, rr: number) {
+        this.left = ll;
+        this.right = rr;
+    }
+};

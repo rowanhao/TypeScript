@@ -18,7 +18,6 @@ class Cir2{
         // 旋转 this.b 的速度 
         var pos1: Vector2 = pos0.rotate2(dx, dy, sin, cos, true);
         // 旋转 this.a 的速度 
-
         var vel0: Vector2 = pos0.rotate2(this.a.direction.x, this.a.direction.y, sin, cos, true);
         // 旋转 this.b 的速度 
         var vel1: Vector2 = pos0.rotate2(this.b.direction.x, this.b.direction.y, sin, cos, true);

@@ -4,19 +4,6 @@
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-var Point = (function () {
-    function Point(xx, yy) {
-        this.x = xx;
-        this.y = yy;
-    }
-    Point.prototype.move = function (dir, step) {
-        if (typeof step === "undefined") { step = 1; }
-        this.x += dir.x * step;
-        this.y += dir.x * step;
-    };
-    return Point;
-})();
-
 //多边形类
 var Polygon = (function (_super) {
     __extends(Polygon, _super);
@@ -47,6 +34,14 @@ var Polygon = (function (_super) {
         canvas.closePath();
         canvas.fill();
     };
+
+    Polygon.prototype.project = function (ax) {
+        var left, right;
+
+        return new Segment(left, right);
+    };
+
+    //得到分离轴
     Polygon.prototype.getAxes = function () {
         for (var i = 0; i < this.point.length; i++) {
             var a = this.point[i];
@@ -57,4 +52,4 @@ var Polygon = (function (_super) {
     };
     return Polygon;
 })(CollisionShape);
-//# sourceMappingURL=polygon.js.map
+//# sourceMappingURL=Polygon.js.map

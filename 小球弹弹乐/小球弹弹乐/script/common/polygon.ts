@@ -1,23 +1,11 @@
 ﻿
-class Point {
-    x: number;
-    y: number;
-    constructor(xx: number, yy: number) {
-        this.x = xx;
-        this.y = yy;
-    }
 
-    move(dir: Vector2, step: number = 1) {
-        this.x += dir.x * step;
-        this.y += dir.x * step;
-    }
-}
 
 //多边形类
 class Polygon extends CollisionShape {
     point: Point[];
     color: string;
-    axes: Vector2[];
+    axes: Vector2[];//分离轴
 
     constructor(po: Point[], dir: Vector2) {
         this.point = po;
@@ -46,7 +34,15 @@ class Polygon extends CollisionShape {
         canvas.closePath();
         canvas.fill();
     }
-    getAxes() {
+
+    project(ax: Vector2): Segment {
+        var left, right;
+
+        return new Segment(left, right);
+    }
+
+    //得到分离轴
+    private getAxes() {
         for (var i = 0; i < this.point.length; i++) {
             var a = this.point[i];
             var b = this.point[(i + 1) % this.point.length];
@@ -54,5 +50,5 @@ class Polygon extends CollisionShape {
             this.axes.push(line.perp());
         }
     }
-    get
+
 }
