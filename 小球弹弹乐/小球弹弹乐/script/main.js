@@ -1,10 +1,12 @@
 ﻿var heros = new Array();
+var ps = new Array();
 var ctx;
 var canvas;
 var handle = 0;
 var c_width;
 var c_height;
 var fps;
+var graphC = new GraphConstructor;
 
 //var coll: boolean[][] = new Array();
 window.onload = function () {
@@ -13,7 +15,8 @@ window.onload = function () {
 };
 
 window.onclick = function (e) {
-    createHero(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    //createHero(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    createPolygon(4, e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
 };
 
 function createHero(xx, yy) {
@@ -58,7 +61,9 @@ function cancelCircle() {
     }
 }
 
-function createPolygon() {
+function createPolygon(num, x, y) {
+    var polygon = graphC.createPolygen(num, x, y);
+    ps.push(polygon);
 }
 
 function cancelPolygon() {
@@ -94,9 +99,11 @@ function collision() {
 function loop() {
     fps++;
     collision();
-
     ctx.clearRect(0, 0, c_width, c_height);
     heros.forEach(function (v, i, a) {
+        return v.draw(ctx);
+    });
+    ps.forEach(function (v, i, a) {
         return v.draw(ctx);
     });
     ctx.lineWidth = 1;

@@ -8,10 +8,11 @@
 var Polygon = (function (_super) {
     __extends(Polygon, _super);
     function Polygon(po, dir) {
+        _super.call(this, dir);
+        this.axes = new Array();
         this.point = po;
         this.color = Random.color();
         this.getAxes();
-        _super.call(this, dir);
     }
     Polygon.prototype.move = function (step) {
         if (typeof step === "undefined") { step = 1; }
@@ -31,6 +32,7 @@ var Polygon = (function (_super) {
                 canvas.lineTo(this.point[0].x, this.point[0].y);
             }
         }
+        canvas.stroke();
         canvas.closePath();
         canvas.fill();
     };

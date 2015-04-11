@@ -33,7 +33,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="script\common\Circle.ts" />
     <TypeScriptCompile Include="script\common\Collision.ts" />
-    <TypeScriptCompile Include="script\common\CollisionShape.ts" />
+    <TypeScriptCompile Include="script\common\Shape.ts" />
     <TypeScriptCompile Include="script\common\GraphConstructor.ts" />
     <TypeScriptCompile Include="script\common\math.ts" />
     <TypeScriptCompile Include="script\common\Polygon.ts" />

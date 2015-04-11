@@ -5,13 +5,13 @@
 class Polygon extends Shape {
     point: Point[];
     color: string;
-    axes: Vector2[];//分离轴
+    axes: Vector2[] = new Array();//分离轴
 
     constructor(po: Point[], dir: Vector2) {
+        super(dir);
         this.point = po;
         this.color = Random.color();
         this.getAxes();
-        super(dir);
     }
     
     move(step: number = 1) {
@@ -30,7 +30,8 @@ class Polygon extends Shape {
             } else {
                 canvas.lineTo(this.point[0].x, this.point[0].y);
             }
-        }
+        }   
+        canvas.stroke();
         canvas.closePath();
         canvas.fill();
     }
