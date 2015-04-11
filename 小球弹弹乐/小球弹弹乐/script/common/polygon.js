@@ -38,7 +38,14 @@ var Polygon = (function (_super) {
     Polygon.prototype.project = function (ax) {
         var left, right, mid;
         for (var i = 0; i < this.point.length; i++) {
-            mid = this.point[i];
+            var px = new Vector2(this.point[i].x, this.point[i].y);
+            mid = ax.dot(px);
+            if (i == 0)
+                left = right = mid;
+            if (mid < left)
+                left = mid;
+            if (mid > right)
+                right = mid;
         }
         return new Segment(left, right);
     };
