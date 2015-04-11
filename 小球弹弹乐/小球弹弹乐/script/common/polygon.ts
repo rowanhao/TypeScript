@@ -2,10 +2,10 @@
 
 
 //多边形类
-class Polygon extends CollisionShape {
+class Polygon extends Shape {
     point: Point[];
     color: string;
-    axes: Line[];//分离轴
+    axes: Vector2[];//分离轴
 
     constructor(po: Point[], dir: Vector2) {
         this.point = po;

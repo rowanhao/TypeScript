@@ -60,5 +60,5 @@ var Polygon = (function (_super) {
         }
     };
     return Polygon;
-})(CollisionShape);
+})(Shape);
 //# sourceMappingURL=Polygon.js.map

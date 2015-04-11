@@ -1,6 +1,6 @@
 ﻿
 
-class Circle extends CollisionShape {
+class Circle extends Shape {
     x: number;
     y: number;
     r: number;

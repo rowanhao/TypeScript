@@ -35,7 +35,7 @@ function createHero(xx: number = -1, yy: number = -1) {
 
 function createCircle() {
     var num = Number(document.getElementById("Circlenumber").value);
-   // console.log(num, sp);
+    //console.log(num, sp);
     for (var i = 0; i < num; i++)createHero(-1, -1);
 }
 

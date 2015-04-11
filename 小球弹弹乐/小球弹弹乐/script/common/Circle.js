@@ -35,5 +35,5 @@ var Circle = (function (_super) {
         canvas.fill();
     };
     return Circle;
-})(CollisionShape);
+})(Shape);
 //# sourceMappingURL=Circle.js.map
