@@ -22,8 +22,10 @@ window.onclick = function (e) {
 function createHero(xx: number = -1, yy: number = -1) {
     if (xx < -1 || xx > c_width) return;
     if (yy < -1 || yy > c_height) return;
-    var sp = Number(document.getElementById("Circlespeed").value);
-    var r = Number(document.getElementById("Circler").value);
+    var sp: number;
+    var r: number;
+    // var sp = Number(document.getElementById("Circlespeed").value);
+    // var r = Number(document.getElementById("Circler").value);
     var setX = Math.random();
     var setY = Math.sqrt(1.0 - setX * setX);
     if (Random.range(0, 1) == 0) setX = -setX;
@@ -37,14 +39,15 @@ function createHero(xx: number = -1, yy: number = -1) {
 }
 
 function createCircle() {
-    var num = Number(document.getElementById("Circlenumber").value);
+    var num: number;
+   // num = Number(document.getElementById("Circlenumber").value);
     //console.log(num, sp);
     for (var i = 0; i < num; i++)createHero(-1, -1);
 }
 
 function cancelCircle() {
     var num: number;
-    num = Number(document.getElementById("Circlenumber").value);
+   // num = Number(document.getElementById("Circlenumber").value);
     for (var i = 0; i < num; i++) {
         if (heros.length == 0) break;
         heros.pop();

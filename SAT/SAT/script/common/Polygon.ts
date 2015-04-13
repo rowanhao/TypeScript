@@ -21,7 +21,8 @@ class Polygon extends Shape {
     }
 
     draw(canvas: CanvasRenderingContext2D) {
-        canvas.fillStyle = this.color;
+        canvas.lineWidth = 1;
+        canvas.strokeStyle = this.color;
         canvas.beginPath();
         for (var i = 0; i < this.point.length; i++) {
             canvas.moveTo(this.point[i].x, this.point[i].y);
@@ -32,8 +33,6 @@ class Polygon extends Shape {
             }
         }   
         canvas.stroke();
-        canvas.closePath();
-        canvas.fill();
     }
 
     project(ax: Vector2): Segment {
@@ -57,5 +56,4 @@ class Polygon extends Shape {
             this.axes.push(line.perp());
         }
     }
-
 }
