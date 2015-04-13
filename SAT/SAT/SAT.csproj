@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <ProjectGuid>{993C7E22-08FE-48ED-BBE6-E300CEBA0AA4}</ProjectGuid>
+    <ProjectGuid>{D337328C-E02A-4D29-8C46-270FAE06614B}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <OutputPath>bin</OutputPath>
@@ -23,6 +23,15 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="script\common\Circle.ts" />
+    <TypeScriptCompile Include="script\common\Collision.ts" />
+    <TypeScriptCompile Include="script\common\GraphConstructor.ts" />
+    <TypeScriptCompile Include="script\common\math.ts" />
+    <TypeScriptCompile Include="script\common\Polygon.ts" />
+    <TypeScriptCompile Include="script\common\Shape.ts" />
+    <TypeScriptCompile Include="script\main.ts" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -31,19 +40,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="script\common\Circle.ts" />
-    <TypeScriptCompile Include="script\common\Collision.ts" />
-    <TypeScriptCompile Include="script\common\Shape.ts" />
-    <TypeScriptCompile Include="script\common\GraphConstructor.ts" />
-    <TypeScriptCompile Include="script\common\math.ts" />
-    <TypeScriptCompile Include="script\common\Polygon.ts" />
-    <TypeScriptCompile Include="script\main.ts" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>小球弹弹乐</RootNamespace>
+    <RootNamespace>SAT</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
@@ -53,9 +56,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>16575</DevelopmentServerPort>
+          <DevelopmentServerPort>19428</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:16575/</IISUrl>
+          <IISUrl>http://localhost:19428/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
