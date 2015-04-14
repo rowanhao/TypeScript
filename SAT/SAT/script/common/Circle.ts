@@ -7,13 +7,18 @@ class Circle extends Shape {
     color: string;
     eps: number;
 
-    constructor(xx: number, yy: number, rr: number, dir: Vector2){
+    constructor(xx: number, yy: number, rr: number, dir: Vector2) {
         this.x = xx;
         this.y = yy;
         this.r = rr;
+        this.init();
+
+        super(dir);
+    }
+
+    init() {
         this.color = Random.color();
         this.eps = 0.0000000001
-        super(dir);
     }
 
     move(step: number = 1) {
@@ -24,7 +29,7 @@ class Circle extends Shape {
     }
 
     draw(canvas: CanvasRenderingContext2D) {
-          canvas.fillStyle = this.color;
+        canvas.fillStyle = this.color;
         //canvas.strokeStyle = this.color;
         canvas.lineWidth = 5;
         canvas.beginPath();

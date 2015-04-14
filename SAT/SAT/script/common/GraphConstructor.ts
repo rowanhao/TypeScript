@@ -10,10 +10,8 @@ class GraphConstructor {
         po.push(new Point(x + step*2, y));
         po.push(new Point(x + step * 2, y + step * 2));
         if (num == 3) return new Polygon(po, dir);
-        po.push(new Point(x + step, y + step * 3));
+        po.push(new Point(x , y + step * 2));
         if (num == 4) return new Polygon(po, dir);
-        po.push(new Point(x, y + step * 2));
-        if (num == 5) return new Polygon(po, dir); 
     }
     public createCircle(num:number,speed:number) {
 
