@@ -57,7 +57,20 @@ function Polygon2Polygon(a: Polygon, b: Polygon): boolean {
 
     for (var i = 0; i < a.axes.length; i++) {
         var axes = a.axes[i];
+        var p1 = a.project(axes);
+        var p2 = b.project(axes);
+        if (!p1.overlap(p2)) {
+            return false;
+        }
+    }
 
+    for (var i = 0; i < b.axes.length; i++) {
+        var axes = b.axes[i];
+        var p1 = a.project(axes);
+        var p2 = b.project(axes);
+        if (!p1.overlap(p2)) {
+            return false;
+        }
     }
 
     return true;

@@ -182,6 +182,10 @@ class Segment {
         this.left = ll;
         this.right = rr;
     }
+    overlap(seg: Segment): boolean {
+        if (this.left > seg.right || this.right < seg.left) return false;
+        return true;
+    }
 };
 //直线
 class Line {
