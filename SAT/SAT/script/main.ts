@@ -1,4 +1,5 @@
 ﻿
+var heros: Circle[] = new Array();
 var ctx: CanvasRenderingContext2D;
 var canvas: HTMLCanvasElement;
 var handle = 0;
