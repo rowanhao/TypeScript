@@ -23,13 +23,16 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="script\CircleController.ts" />
     <TypeScriptCompile Include="script\common\Circle.ts" />
     <TypeScriptCompile Include="script\common\Collision.ts" />
     <TypeScriptCompile Include="script\common\GraphConstructor.ts" />
     <TypeScriptCompile Include="script\common\math.ts" />
     <TypeScriptCompile Include="script\common\Polygon.ts" />
+    <TypeScriptCompile Include="script\PolygonController.ts" />
     <TypeScriptCompile Include="script\common\Shape.ts" />
     <TypeScriptCompile Include="script\main.ts" />
+    <TypeScriptCompile Include="script\PolygonTest.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
