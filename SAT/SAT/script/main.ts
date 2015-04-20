@@ -68,7 +68,7 @@ function collision():String {
         var hero: Polygon = heros[i];
         for (var j = i + 1; j < heros.length; j++) {
             var hero2: Polygon = heros[j];
-            var cha = Polygon2Polygon(hero, hero2);
+            var cha = AABB(hero, hero2);
             if (cha == true) {
                 return "true";
             }

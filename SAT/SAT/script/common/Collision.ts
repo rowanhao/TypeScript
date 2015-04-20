@@ -74,3 +74,28 @@ function Polygon2Polygon(a: Polygon, b: Polygon): boolean {
     }
     return true;
 }
+
+function AABB(a: Polygon, b: Polygon): boolean {
+
+    var ax1, ay1, ax2, ay2;
+    var bx1, by1, bx2, by2;
+    ax1 = ax2 = a.point[0].x;
+    ay1 = ay2 = a.point[0].y;
+    bx1 = bx2 = b.point[0].x;
+    by1 = by2 = b.point[0].y;
+    for (var i = 0; i < a.point.length; i++) {
+        if (a.point[i].x < ax1) ax1 = a.point[i].x;
+        if (a.point[i].x > ax2) ax2 = a.point[i].x;
+        if (a.point[i].y < ay1) ay1 = a.point[i].y;
+        if (a.point[i].y > ay2) ay2 = a.point[i].y;
+    }
+
+    for (var i = 0; i < b.point.length; i++) {
+        if (b.point[i].x < bx1) bx1 = b.point[i].x;
+        if (b.point[i].x > bx2) bx2 = b.point[i].x;
+        if (b.point[i].y < by1) by1 = b.point[i].y;
+        if (b.point[i].y > by2) by2 = b.point[i].y;
+    }
+    if (ax1 > bx2 || ax2 < bx1 || ay1 > by2 || ay2 < by1) return false;
+    return true;
+}
