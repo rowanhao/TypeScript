@@ -12,8 +12,26 @@ class Polygon extends Shape {
         this.point = po;
         this.color = Random.color();
         this.getAxes();
+        this.type = "polygon";
     }
-    
+
+    IsSelected(px: number, py: number) {
+        if (this.judgePointIn(px, py)) {
+            this.flag_select = true;
+        }
+    }
+
+    clearSelected() {
+        this.flag_select = false;
+    }
+
+    movexy(px: number, py: number) {
+        for (var i = 0; i < this.point.length; i++) {
+            this.point[i].x += px;
+            this.point[i].y += py;
+        }
+    }
+
     move(step: number = 1) {
         for (var i = 0; i < this.point.length; i++) {
             this.point[i].move(this.direction, step);
@@ -31,7 +49,7 @@ class Polygon extends Shape {
             } else {
                 canvas.lineTo(this.point[0].x, this.point[0].y);
             }
-        }   
+        }
         canvas.stroke();
     }
 
@@ -55,5 +73,34 @@ class Polygon extends Shape {
             var line = new Vector2(b.x - a.x, b.y - a.y);
             this.axes.push(line.perp());
         }
+    }
+
+    //使用回转数法判断点是否在多边形的内部
+    private judgePointIn(px: number, py: number): boolean {
+        var sum: number = 0;
+        for (var i = 0, l = this.point.length, j = l - 1; i < l; j = i, i++) {
+            var sx = this.point[i].x,
+                sy = this.point[i].y,
+                tx = this.point[j].x,
+                ty = this.point[j].y
+            // 点与多边形顶点重合或在多边形的边上
+            if ((sx - px) * (px - tx) >= 0 && (sy - py) * (py - ty) >= 0 && (px - sx) * (ty - sy) === (py - sy) * (tx - sx)) {
+                return true;
+            }
+
+            // 点与相邻顶点连线的夹角
+            var angle = Math.atan2(sy - py, sx - px) - Math.atan2(ty - py, tx - px);
+            // 确保夹角不超出取值范围（-π 到 π）
+            if (angle >= Math.PI) {
+                angle = angle - Math.PI * 2;
+            }
+            else if (angle <= -Math.PI) {
+                angle = angle + Math.PI * 2;
+            }
+            sum += angle;
+        }
+
+        // 计算回转数并判断点和多边形的几何关系
+        return Math.round(sum / Math.PI) == 0 ? false : true;
     }
 }

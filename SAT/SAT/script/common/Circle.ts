@@ -12,7 +12,7 @@ class Circle extends Shape {
         this.y = yy;
         this.r = rr;
         this.init();
-
+        this.type = "circle"
         super(dir);
     }
 

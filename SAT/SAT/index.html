@@ -11,6 +11,8 @@
     <script src="script/common/Polygon.js"></script>
     <script src="script/common/Collision.js"></script>
     <script src="script/common/GraphConstructor.js"></script>
+    <script src="script/CircleController.js"></script>
+    <script src="script/PolygonController.js"></script>
     <script src="script/main.js"></script>
     <script>
         function textChange(id, num) {
@@ -28,6 +30,10 @@
     </script>
 </head>
 <body>
+    <div id="test">
+        <input type="radio" name="select" value="add" />添加<br />
+        <input type="radio" name="select" value="move" />移动<br />
+    </div>
     <div id="content">
         <canvas id="gameCanvas" width="800" height="600" />
     </div>

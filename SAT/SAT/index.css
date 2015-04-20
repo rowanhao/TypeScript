@@ -33,3 +33,10 @@ canvas {
     display:inline-block;
 }
 
+#test {
+    position: absolute;
+	left:800px;
+	top: 40px;
+    background:#ffffff;
+    display:inline-block;
+}

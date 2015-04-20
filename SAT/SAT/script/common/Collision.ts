@@ -72,6 +72,5 @@ function Polygon2Polygon(a: Polygon, b: Polygon): boolean {
             return false;
         }
     }
-
     return true;
 }
