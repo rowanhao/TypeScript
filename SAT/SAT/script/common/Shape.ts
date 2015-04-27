@@ -10,4 +10,9 @@ class Shape {
     }
     draw(canvas: CanvasRenderingContext2D) { }
     move(step: number = 1) { }
+    IsSelected(xx: number, yy: number) { }
+    clearSelected() {
+        this.flag_select = false;
+    }
+    movexy(px: number, py: number) {}
 }

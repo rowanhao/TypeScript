@@ -21,10 +21,6 @@ class Polygon extends Shape {
         }
     }
 
-    clearSelected() {
-        this.flag_select = false;
-    }
-
     movexy(px: number, py: number) {
         for (var i = 0; i < this.point.length; i++) {
             this.point[i].x += px;
