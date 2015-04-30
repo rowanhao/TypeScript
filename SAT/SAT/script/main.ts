@@ -10,6 +10,9 @@ var graphC: GraphConstructor = new GraphConstructor;
 var mouse_down_flag: boolean = false;
 var mouse_x: number;
 var mouse_y: number;
+var stp = 0;
+var all = 0;
+var ave = 0;
 //var coll: boolean[][] = new Array();
 window.onload = () => {
     main();
@@ -71,7 +74,7 @@ function collision():number {
         var polygon: Polygon = polygons[i];
         for (var j = i + 1; j < polygons.length; j++) {
             var polygon2: Polygon = polygons[j];
-            var cha = Polygon2Polygon(polygon, polygon2);
+            var cha = AABB(polygon, polygon2);
             if (cha == true) {
                 ans++;
             }
@@ -101,7 +104,14 @@ function loop() {
     ctx.strokeText("多边形数量：" + polygons.length, 0, 120);
     ctx.strokeText("目前碰撞对数：" + collisionFlag, 0, 160);
     ctx.strokeText("目前单次检测时间： " + useTime + " ms", 0, 200);
-
+    ctx.strokeText("目前平均检测时间： " + ave.toFixed(1) + " ms", 0, 240);
+    all += useTime;
+    stp += 1;
+    if (stp >= 10) {
+        stp -= 10;
+        ave = all * 0.1;
+        all = 0;
+    }
     polygons.forEach((v, i, a) => v.move());
     circles.forEach((v, i, a) => v.move());
 
@@ -109,6 +119,7 @@ function loop() {
 }
 function main() {
     fps = 0;
+    stp = 0;
     canvas = <HTMLCanvasElement>document.getElementById('gameCanvas');
     c_height = canvas.height;
     c_width = canvas.width;
